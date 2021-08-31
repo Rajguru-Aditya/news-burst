@@ -18,7 +18,10 @@ export class News extends Component {
     let data = await fetch(url);
     let parsedData = await data.json();
     console.log(parsedData);
-    this.setState({ articles: parsedData.articles });
+    this.setState({
+      articles: parsedData.articles,
+      totalResults: parsedData.totalResults,
+    });
   }
   handlePrev = async () => {
     console.log("Previous");
@@ -37,19 +40,21 @@ export class News extends Component {
   };
 
   handleNext = async () => {
-    console.log("Next");
+    console.log("next");
+    if (this.state.page + 1 > Math.ceil(this.state.totalResults / 20)) {
+    } else {
+      let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=c4be082d1c634629a137879e75602006&page=${
+        this.state.page + 1
+      }&pageSize=20`;
+      let data = await fetch(url);
+      let parsedData = await data.json();
+      console.log(parsedData);
 
-    let url = `https://newsapi.org/v2/top-headlines?country=in&apiKey=c4be082d1c634629a137879e75602006&page=${
-      this.state.page + 1
-    }&pageSize=20`;
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    console.log(parsedData);
-
-    this.setState({
-      page: this.state.page + 1,
-      articles: parsedData.articles,
-    });
+      this.setState({
+        page: this.state.page + 1,
+        articles: parsedData.articles,
+      });
+    }
   };
 
   defaultImage =
