@@ -1,0 +1,58 @@
+{
+  "status": "ok",
+  "totalResults": 4,
+  "articles": [
+    {
+      "source": {
+        "id": "fox-sports",
+        "name": "Fox Sports"
+      },
+      "author": "FOX Sports",
+      "title": "College Football: Top newcomers in the Big Ten Conference",
+      "description": "Forty-four Big Ten players were selected in the 2021 NFL Draft, which means fans will see plenty of new faces this season.",
+      "url": "http://www.foxsports.com/stories/college-football/college-football-2021-big-ten-jt-tuimoloau-treveyon-henderson-quavaris-crouch-top-newcomers",
+      "urlToImage": "https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2021/08/1408/814/8.28.21_Top-Newcomers-in-the-Big-Ten-16x9-1.jpg?ve=1&tl=1",
+      "publishedAt": "2021-08-30T18:32:37Z",
+      "content": "By Sean MerrimanFOX Sports Senior Editor\r\nWill anyone in the Big Ten Conference be able to stop Ohio State this season?\r\nThat is the magic question heading into the 2021 Big Ten football campaign. Th… [+3945 chars]"
+    },
+    {
+      "source": {
+        "id": "bleacher-report",
+        "name": "Bleacher Report"
+      },
+      "author": "Morgan Moriarty",
+      "title": "College Football Rankings: B/R's Top 25 Ahead of Week 1",
+      "description": "College football returns in all its glory this weekend, folks. After a long offseason, Week 1 will kick off in earnest Thursday evening. The start of every college football season means questions will soon be answered for several teams...",
+      "url": "https://bleacherreport.com/articles/2947848-college-football-rankings-brs-top-25-ahead-of-week-1",
+      "urlToImage": "https://img.bleacherreport.net/img/slides/photos/004/472/844/hi-res-c424ac6388d97567eb9f0d30a5d8c64f_crop_exact.jpg?w=1200&h=1200&q=75",
+      "publishedAt": "2021-08-30T15:15:04Z",
+      "content": "Josh Morgan/Associated Press\r\nJust as it has been for much of the last decade, the Buckeyes, Crimson Tide and Tigers appear to be the CFP favorites. This year, though, the trio are replacing a ton of… [+2350 chars]"
+    },
+    {
+      "source": {
+        "id": "espn",
+        "name": "ESPN"
+      },
+      "author": "Tristan H. Cockcroft",
+      "title": "Fantasy football draft help - The best picks for each slot in Rounds 1 and 2",
+      "description": "Get ready for your fantasy draft -- regardless of when you pick -- by planning for all possibilities ahead of time. Tristan H. Cockcroft recommends which players you should take in 10- and 12-team leagues.",
+      "url": "http://espn.go.com/fantasy/football/insider/story/_/id/32081786/fantasy-football-draft-help-best-picks-slot-rounds-1-2",
+      "urlToImage": "https://a3.espncdn.com/combiner/i?img=%2Fphoto%2F2021%2F0825%2Fr900507_1296x729_16%2D9.jpg",
+      "publishedAt": "2021-08-29T19:10:00Z",
+      "content": "Draft position is an annual source of stress for fantasy football managers.\r\nWhile I often preach changing your league format to salary-cap style as a method of eliminate this, I also recognize the c… [+17695 chars]"
+    },
+    {
+      "source": {
+        "id": "espn-cric-info",
+        "name": "ESPN Cric Info"
+      },
+      "author": null,
+      "title": "Five famous people (and one cat) you didn't know have ESPNcricinfo profiles | ESPNcricinfo.com",
+      "description": "Why do a footballer, a Nobel laureate and a prime minister (no, not Imran Khan) find themselves in the ESPNcricinfo player database? | ESPNcricinfo.com",
+      "url": "http://www.espncricinfo.com/story/_/id/29102695/five-famous-people-one-cat-know-espncricinfo-profiles",
+      "urlToImage": "https://a.espncdn.com/i/cricket/cricinfo/1221668_1296x1296.gif",
+      "publishedAt": "2020-04-27T07:20:43Z",
+      "content": "Why do a cat, a footballer, a Nobel laureate and a prime minister find themselves in the ESPNcricinfo database? Here are six player profiles you wouldn't have expected we had.\r\nPeter the catThe only … [+5504 chars]"
+    }
+  ]
+}
