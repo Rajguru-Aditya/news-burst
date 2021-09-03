@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 export class News extends Component {
   static defaultProps = {
     country: "in",
-    pageSize: 8,
+    pageSize: 9,
     category: "general",
   };
 
@@ -16,18 +16,23 @@ export class News extends Component {
     category: PropTypes.string,
   };
 
-  constructor() {
-    super();
+  capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
+  constructor(props) {
+    super(props);
     console.log("Hello this is a constructor from News Component");
     this.state = {
       articles: [],
       loading: false,
       page: 1,
     };
+    document.title = `NewsBurst - ${this.capitalize(this.props.category)}`;
   }
 
-  async componentDidMount() {
-    let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c4be082d1c634629a137879e75602006&pageSize=${this.props.pageSize}`;
+  async updateNews() {
+    const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c4be082d1c634629a137879e75602006&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     this.setState({ loading: true });
     let data = await fetch(url);
     let parsedData = await data.json();
@@ -38,53 +43,77 @@ export class News extends Component {
       loading: false,
     });
   }
-  handlePrev = async () => {
-    console.log("Previous");
 
-    let url = `https://newsapi.org/v2/top-headlines?country=${
-      this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=c4be082d1c634629a137879e75602006&page=${
-      this.state.page - 1
-    }&pageSize=${this.props.pageSize}`;
-    this.setState({ loading: true });
-    let data = await fetch(url);
-    let parsedData = await data.json();
-    console.log(parsedData);
+  async componentDidMount() {
+    // let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=c4be082d1c634629a137879e75602006&pageSize=${this.props.pageSize}`;
+    // this.setState({ loading: true });
+    // let data = await fetch(url);
+    // let parsedData = await data.json();
+    // console.log(parsedData);
+    // this.setState({
+    //   articles: parsedData.articles,
+    //   totalResults: parsedData.totalResults,
+    //   loading: false,
+    // });
+    this.updateNews();
+  }
+  handlePrev = async () => {
+    // console.log("Previous");
+
+    // let url = `https://newsapi.org/v2/top-headlines?country=${
+    //   this.props.country
+    // }&category=${
+    //   this.props.category
+    // }&apiKey=c4be082d1c634629a137879e75602006&page=${
+    //   this.state.page - 1
+    // }&pageSize=${this.props.pageSize}`;
+    // this.setState({ loading: true });
+    // let data = await fetch(url);
+    // let parsedData = await data.json();
+    // console.log(parsedData);
+
+    // this.setState({
+    //   page: this.state.page - 1,
+    //   articles: parsedData.articles,
+    //   loading: false,
+    // });
 
     this.setState({
-      page: this.state.page - 1,
-      articles: parsedData.articles,
-      loading: false,
+      page: (this.state.page -= 1),
     });
+    this.updateNews();
+    console.log(this.state.page);
   };
 
   handleNext = async () => {
-    console.log("next");
-    if (
-      !(
-        this.state.page + 1 >
-        Math.ceil(this.state.totalResults / this.props.pageSize)
-      )
-    ) {
-      let url = `https://newsapi.org/v2/top-headlines?country=${
-        this.props.country
-      }&category=${
-        this.props.category
-      }&apiKey=c4be082d1c634629a137879e75602006&page=${
-        this.state.page + 1
-      }&pageSize=${this.props.pageSize}`;
-      this.setState({ loading: true });
-      let data = await fetch(url);
-      let parsedData = await data.json();
-
-      this.setState({
-        page: this.state.page + 1,
-        articles: parsedData.articles,
-        loading: false,
-      });
-    }
+    // console.log("next");
+    // if (
+    //   !(
+    //     this.state.page + 1 >
+    //     Math.ceil(this.state.totalResults / this.props.pageSize)
+    //   )
+    // ) {
+    //   let url = `https://newsapi.org/v2/top-headlines?country=${
+    //     this.props.country
+    //   }&category=${
+    //     this.props.category
+    //   }&apiKey=c4be082d1c634629a137879e75602006&page=${
+    //     this.state.page + 1
+    //   }&pageSize=${this.props.pageSize}`;
+    //   this.setState({ loading: true });
+    //   let data = await fetch(url);
+    //   let parsedData = await data.json();
+    //   this.setState({
+    //     page: this.state.page + 1,
+    //     articles: parsedData.articles,
+    //     loading: false,
+    //   });
+    // }
+    this.setState({
+      page: (this.state.page += 1),
+    });
+    this.updateNews();
+    console.log(this.state.page);
   };
 
   defaultImage =
@@ -92,7 +121,9 @@ export class News extends Component {
   render() {
     return (
       <div className="container my-3">
-        <h1 className="text-center my-5">NewsBurst - Top Headlines</h1>
+        <h1 className="text-center my-5">
+          NewsBurst - Top {this.capitalize(this.props.category)} Headlines
+        </h1>
         {this.state.loading && <Spinner />}
         <div className="row">
           {!this.state.loading &&
@@ -100,14 +131,30 @@ export class News extends Component {
               return (
                 <div className="col-md-4" key={element.url}>
                   <NewsItem
-                    title={element.title ? element.title : ""}
-                    description={element.description ? element.description : ""}
+                    title={
+                      element.title
+                        ? element.title.substring(0, 25) + "..."
+                        : ""
+                    }
+                    description={
+                      element.description
+                        ? element.description.substring(0, 100)
+                        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.".substring(
+                            0,
+                            100
+                          )
+                    }
                     imgUrl={
                       element.urlToImage
                         ? element.urlToImage
                         : this.defaultImage
                     }
                     newsUrl={element.url}
+                    date={
+                      element.publishedAt ? element.publishedAt : "sometime ago"
+                    }
+                    author={element.author ? element.author : "Unknown author"}
+                    source={element.source.name}
                   />
                 </div>
               );
